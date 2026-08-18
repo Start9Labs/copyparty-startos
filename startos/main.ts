@@ -1,42 +1,45 @@
+import { copypartyConf } from './fileModels/copyparty.conf'
 import { i18n } from './i18n'
 import { sdk } from './sdk'
-import { uiPort } from './utils'
+import { mounts, uiPort } from './utils'
 
 export const main = sdk.setupMain(async ({ effects }) => {
-  /**
-   * ======================== Setup (optional) ========================
-   *
-   * In this section, we fetch any resources or run any desired preliminary commands.
-   */
-  console.info(i18n('Starting Hello World!'))
+  console.info(i18n('Starting copyparty'))
 
-  /**
-   * ======================== Daemons ========================
-   *
-   * In this section, we create one or more daemons that define the service runtime.
-   *
-   * Each daemon defines its own health check, which can optionally be exposed to the user.
-   */
+  // Both actions write this file while the service is running; re-running main
+  // on a change is what restarts copyparty so they take effect.
+  await copypartyConf.read().const(effects)
+
+  const subcontainer = sdk.SubContainer.of(
+    effects,
+    { imageId: 'copyparty' },
+    mounts,
+    'copyparty-sub',
+  )
+
   return sdk.Daemons.of(effects).addDaemon('primary', {
-    subcontainer: sdk.SubContainer.of(
-      effects,
-      { imageId: 'hello-world' },
-      sdk.Mounts.of().mountVolume({
-        volumeId: 'main',
-        subpath: null,
-        mountpoint: '/data',
-        readonly: false,
-      }),
-      'hello-world-sub',
-    ),
-    exec: { command: ['hello-world'] },
+    subcontainer,
+    exec: { command: sdk.useEntrypoint() },
     ready: {
       display: i18n('Web Interface'),
-      fn: () =>
-        sdk.healthCheck.checkPortListening(effects, uiPort, {
-          successMessage: i18n('The web interface is ready'),
-          errorMessage: i18n('The web interface is not ready'),
-        }),
+      // The status code is the signal: copyparty answers / at 200 signed in or
+      // not, but 500 once its no-config failsafe trips, so a status-blind check
+      // reads a service refusing every request as serving.
+      fn: async () => {
+        const ok = await fetch(`http://localhost:${uiPort}/`)
+          .then((res) => res.ok)
+          .catch(() => false)
+
+        return ok
+          ? {
+              result: 'success' as const,
+              message: i18n('The web interface is ready'),
+            }
+          : {
+              result: 'failure' as const,
+              message: i18n('The web interface is not ready'),
+            }
+      },
     },
     requires: [],
   })

@@ -1,20 +1,25 @@
 import { setupManifest } from '@start9labs/start-sdk'
 import { long, short } from './i18n'
 
+const dockerImage = 'copyparty/ac'
+const dockerVersion = '1.20.20'
+
 export const manifest = setupManifest({
-  id: 'hello-world',
-  title: 'Hello World',
+  id: 'copyparty',
+  title: 'copyparty',
   license: 'MIT',
-  packageRepo: 'https://github.com/Start9Labs/hello-world-startos',
-  upstreamRepo: 'https://github.com/Start9Labs/hello-world',
-  marketingUrl: 'https://start9.com/',
-  donationUrl: 'https://donate.start9.com/',
+  packageRepo: 'https://github.com/Start9Labs/copyparty-startos',
+  upstreamRepo: 'https://github.com/9001/copyparty',
+  marketingUrl: 'https://github.com/9001/copyparty',
+  donationUrl: 'https://github.com/sponsors/9001',
   description: { short, long },
-  volumes: ['main'],
+  volumes: ['data', 'config'],
   images: {
-    'hello-world': {
-      source: { dockerTag: 'ghcr.io/start9labs/hello-world:2.0.0' },
-      arch: ['x86_64', 'aarch64', 'riscv64'],
+    copyparty: {
+      source: {
+        dockerTag: `${dockerImage}:${dockerVersion}`,
+      },
+      arch: ['x86_64', 'aarch64'],
     },
   },
   dependencies: {},
