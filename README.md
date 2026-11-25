@@ -12,7 +12,7 @@
 [copyparty](https://github.com/9001/copyparty) is a file server with a browser UI, resumable chunked uploads, a media indexer, thumbnails and WebDAV, all from a single process. On StartOS its files and its server state live on separate volumes, the whole configuration is generated from three package-owned settings, and the single `admin` account is created by an action rather than by editing a config file.
 
 - **Upstream repo:** <https://github.com/9001/copyparty>
-- **Wrapper repo:** <https://github.com/Start9-Community/copyparty-startos>
+- **Wrapper repo:** <https://github.com/Start9Labs/copyparty-startos>
 
 ---
 

@@ -8,7 +8,7 @@ export const manifest = setupManifest({
   id: 'copyparty',
   title: 'copyparty',
   license: 'MIT',
-  packageRepo: 'https://github.com/Start9-Community/copyparty-startos',
+  packageRepo: 'https://github.com/Start9Labs/copyparty-startos',
   upstreamRepo: 'https://github.com/9001/copyparty',
   marketingUrl: 'https://github.com/9001/copyparty',
   donationUrl: 'https://github.com/sponsors/9001',
