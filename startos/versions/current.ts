@@ -11,7 +11,7 @@ export const current = VersionInfo.of({
 - Users with read access over SFTP can no longer truncate files
 - Fixed a cross-site request forgery issue and a cross-site scripting issue
 
-None of these affect the configuration StartOS generates; they matter if you enabled directory keys or SFTP in your own config files.
+Directory-key and SFTP fixes apply if you enabled those features in custom config files. The cross-site scripting fix matters when viewing malicious Markdown, including files received through upload-enabled share links; StartOS does not enable the protective \`nohtml\` flag. The cross-site request forgery advisory concerns page embedding, especially with relaxed cookie settings.
 
 **Fixes**
 
@@ -27,7 +27,7 @@ None of these affect the configuration StartOS generates; they matter if you ena
 - Los usuarios con acceso de lectura por SFTP ya no pueden truncar archivos
 - Se corrigieron un problema de falsificación de solicitudes entre sitios y uno de scripting entre sitios
 
-Ninguno de estos afecta a la configuración que genera StartOS; importan si activó las claves de directorio o SFTP en sus propios archivos de configuración.
+Las correcciones de claves de directorio y SFTP se aplican si activó esas funciones en archivos de configuración personalizados. La corrección de scripting entre sitios importa al visualizar Markdown malicioso, incluidos archivos recibidos mediante enlaces compartidos que permiten subir archivos; StartOS no activa la opción protectora \`nohtml\`. El aviso de falsificación de solicitudes entre sitios trata de la incrustación de páginas, especialmente con ajustes de cookies menos estrictos.
 
 **Correcciones**
 
@@ -43,7 +43,7 @@ Ninguno de estos afecta a la configuración que genera StartOS; importan si acti
 - Benutzer mit Lesezugriff über SFTP können keine Dateien mehr kürzen
 - Eine Cross-Site-Request-Forgery- und eine Cross-Site-Scripting-Lücke wurden behoben
 
-Keine davon betrifft die von StartOS erzeugte Konfiguration; sie sind relevant, wenn Sie Verzeichnisschlüssel oder SFTP in eigenen Konfigurationsdateien aktiviert haben.
+Die Korrekturen für Verzeichnisschlüssel und SFTP gelten, wenn diese Funktionen in eigenen Konfigurationsdateien aktiviert wurden. Die XSS-Korrektur ist beim Anzeigen bösartiger Markdown-Dateien relevant, auch bei Dateien aus Freigabelinks mit Upload-Erlaubnis; StartOS aktiviert das schützende Flag \`nohtml\` nicht. Der CSRF-Hinweis betrifft das Einbetten von Seiten, insbesondere bei gelockerten Cookie-Einstellungen.
 
 **Fehlerbehebungen**
 
@@ -59,7 +59,7 @@ Keine davon betrifft die von StartOS erzeugte Konfiguration; sie sind relevant, 
 - Użytkownicy z dostępem do odczytu przez SFTP nie mogą już obcinać plików
 - Naprawiono podatność typu cross-site request forgery oraz cross-site scripting
 
-Żadna z nich nie dotyczy konfiguracji generowanej przez StartOS; mają znaczenie, jeśli włączono klucze katalogów lub SFTP we własnych plikach konfiguracyjnych.
+Poprawki kluczy katalogów i SFTP dotyczą instalacji z tymi funkcjami włączonymi we własnych plikach konfiguracyjnych. Poprawka XSS ma znaczenie podczas wyświetlania złośliwych plików Markdown, także otrzymanych przez łącza udostępniania umożliwiające przesyłanie plików; StartOS nie włącza flagi ochronnej \`nohtml\`. Ostrzeżenie o CSRF dotyczy osadzania stron, zwłaszcza przy mniej restrykcyjnych ustawieniach plików cookie.
 
 **Poprawki**
 
@@ -75,7 +75,7 @@ Keine davon betrifft die von StartOS erzeugte Konfiguration; sie sind relevant, 
 - Les utilisateurs ayant un accès en lecture via SFTP ne peuvent plus tronquer de fichiers
 - Correction d'une faille de falsification de requête intersite et d'une faille de script intersite
 
-Aucune n'affecte la configuration générée par StartOS ; elles comptent si vous avez activé les clés de répertoire ou SFTP dans vos propres fichiers de configuration.
+Les correctifs des clés de répertoire et de SFTP s'appliquent si ces fonctions sont activées dans des fichiers de configuration personnalisés. Le correctif XSS importe lors de l'affichage de fichiers Markdown malveillants, y compris ceux reçus via des liens de partage autorisant l'envoi de fichiers ; StartOS n'active pas l'option protectrice \`nohtml\`. L'avis CSRF concerne l'intégration de pages, notamment avec des paramètres de cookies moins stricts.
 
 **Corrections**
 
