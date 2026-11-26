@@ -2,7 +2,7 @@ import { setupManifest } from '@start9labs/start-sdk'
 import { long, short } from './i18n'
 
 const dockerImage = 'copyparty/ac'
-const dockerVersion = '1.20.25'
+const dockerVersion = '1.20.28'
 
 export const manifest = setupManifest({
   id: 'copyparty',
